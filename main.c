@@ -12,9 +12,46 @@ void print_to(char *s, int length)
 	}
 }
 
-void print_memcpy_line(char *a, char *b, int n)
+void striteri_func(unsigned int a, char *b)
 {
-	printf("\"%s\" vs \"%s\" int = %i result =%i\n", a, b, n, ft_memcmp(a, b, n));
+	b[0] = b[0] + 1;
+}
+
+void ft_striteri_test(void)
+{
+	printf("************ ft_striteri_test ************ \n");
+
+	char *hello = ft_strdup("hello world");
+	ft_putstr_fd("before  : ", 1);
+	ft_putendl_fd(hello, 1);
+	ft_striteri(hello, striteri_func);
+	ft_putstr_fd("after +1: ", 1);
+	ft_putendl_fd(hello, 1);
+	printf("\n");
+	free(hello);
+}
+
+char strmapi_func(unsigned int a, char b)
+{
+	if (b >= 'a' && b <= 'z')
+		return (b - ('a' - 'A'));
+	else
+		return b;
+}
+
+void ft_strmapi_test(void)
+{
+	printf("************ ft_strmapi_test ************ \n");
+
+	char *hello = ft_strdup("hello world");
+	ft_putstr_fd("original  : ", 1);
+	ft_putendl_fd(hello, 1);
+	char *tester = ft_strmapi(hello, strmapi_func);
+	ft_putstr_fd("mapped : ", 1);
+	ft_putendl_fd(tester, 1);
+	printf("\n");
+	free(hello);
+	free(tester);
 }
 
 void print_memcmp_line(char *a, char *b, int n)
@@ -184,4 +221,7 @@ int main(void)
 	printf("************ ft_memcmp ************ \n");
 	print_memcmp();
 
+	ft_striteri_test();
+
+	ft_strmapi_test();
 }
