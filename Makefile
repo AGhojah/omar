@@ -9,14 +9,14 @@ SRC     = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
           ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
           ft_putendl_fd.c ft_putnbr_fd.c
 
-OBJ = $(SRC:.c=.o)
+CFLAGS = -Wall -Werror -Wextra
 
-FLAGS = -Wall -Werror -Wextra
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs ${NAME} ${OBJ}
+	ar rcs $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

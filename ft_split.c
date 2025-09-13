@@ -49,8 +49,6 @@ static void	free_split(char **split)
 {
 	int	i;
 
-	if (!split)
-		return ;
 	i = 0;
 	while (split[i])
 	{
@@ -58,6 +56,17 @@ static void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+static int	add_word(char **split, int i, const char *s, int len)
+{
+	split[i] = ft_substr(s, 0, len);
+	if (!split[i])
+	{
+		free_split(split);
+		return (0);
+	}
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -78,10 +87,8 @@ char	**ft_split(char const *s, char c)
 		if (*s)
 		{
 			word_len = word_length(s, c);
-			split[word_i] = ft_substr(s, 0, word_len);
-			if (!split[word_i])
+			if (!add_word(split, word_i++, s, word_len))
 				return (NULL);
-			word_i++;
 			s += word_len;
 		}
 	}
